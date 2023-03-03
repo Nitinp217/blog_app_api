@@ -3,6 +3,7 @@ package com.nitin.blog.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,9 @@ public class UserServiceImpl implements IUserService {
 
 	@Autowired
 	private UserRepo repo;
+	
+	@Autowired
+	private ModelMapper mapper;
 
 	public UserDto create(UserDto dto) {
 		User user = this.dtoToUser(dto);
@@ -60,22 +64,12 @@ public class UserServiceImpl implements IUserService {
 	}
 
 	private User dtoToUser(UserDto dto) {
-		User user = new User();
-		user.setUser_id(dto.getId());
-		user.setName(dto.getName());
-		user.setEmail(dto.getEmail());
-		user.setPassword(dto.getPassword());
-		user.setAbout(dto.getAbout());
+		User user = this.mapper.map(dto, User.class);
 		return user;
 	}
 
 	private UserDto userToDto(User user) {
-		UserDto dto = new UserDto();
-		dto.setId(user.getUser_id());
-		dto.setName(user.getName());
-		dto.setEmail(user.getEmail());
-		dto.setPassword(user.getPassword());
-		dto.setAbout(user.getAbout());
+		UserDto dto = this.mapper.map(user, UserDto.class);
 		return dto;
 	}
 }
