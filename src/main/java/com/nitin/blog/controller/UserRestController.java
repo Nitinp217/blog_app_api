@@ -18,14 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.nitin.blog.payloads.ApiResponse;
 import com.nitin.blog.payloads.UserDto;
-import com.nitin.blog.service.impl.UserServiceImpl;
+import com.nitin.blog.service.IUserService;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserRestController {
 
 	@Autowired
-	private UserServiceImpl service;
+	private IUserService service;
 
 	// Create User
 	@PostMapping("/")
