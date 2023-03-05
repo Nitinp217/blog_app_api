@@ -2,6 +2,8 @@ package com.nitin.blog.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,14 +29,14 @@ public class CategoryRestController {
 
 	// create
 	@PostMapping("/")
-	public ResponseEntity<CategoryDto> createCategory(@RequestBody CategoryDto catDto) {
+	public ResponseEntity<CategoryDto> createCategory(@Valid @RequestBody CategoryDto catDto) {
 		CategoryDto categoryDto = service.createCategory(catDto);
 		return new ResponseEntity<CategoryDto>(categoryDto, HttpStatus.CREATED);
 	}
 
 	// update
 	@PutMapping("/{categoryId}")
-	public ResponseEntity<CategoryDto> updateCategory(@RequestBody CategoryDto dto, @PathVariable Integer categoryId) {
+	public ResponseEntity<CategoryDto> updateCategory(@Valid @RequestBody CategoryDto dto, @PathVariable Integer categoryId) {
 		CategoryDto updateCategory = service.updateCategory(dto, categoryId);
 		return new ResponseEntity<CategoryDto>(updateCategory, HttpStatus.OK);
 	}

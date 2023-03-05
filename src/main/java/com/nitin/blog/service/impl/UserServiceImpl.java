@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 import com.nitin.blog.entity.User;
 import com.nitin.blog.exception.ResourceNotFoundException;
 import com.nitin.blog.payloads.UserDto;
-import com.nitin.blog.repository.UserRepo;
+import com.nitin.blog.repository.IUserRepo;
 import com.nitin.blog.service.IUserService;
 
 @Service
 public class UserServiceImpl implements IUserService {
 
 	@Autowired
-	private UserRepo repo;
+	private IUserRepo repo;
 	
 	@Autowired
 	private ModelMapper mapper;
