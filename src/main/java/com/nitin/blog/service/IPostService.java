@@ -3,6 +3,7 @@ package com.nitin.blog.service;
 import java.util.List;
 
 import com.nitin.blog.payloads.PostDto;
+import com.nitin.blog.payloads.PostResponse;
 
 public interface IPostService {
 
@@ -19,7 +20,7 @@ public interface IPostService {
 	PostDto getPostById(Integer postId);
 
 	// get all posts
-	List<PostDto> getAllPosts();
+	PostResponse getAllPosts(Integer pageNumber,Integer pageSize);
 
 	// get all posts by category
 	List<PostDto> getPostByCategory(Integer categoryId);

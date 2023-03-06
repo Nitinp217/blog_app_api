@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.nitin.blog.payloads.PostDto;
+import com.nitin.blog.payloads.PostResponse;
 import com.nitin.blog.service.IPostService;
 
 @RestController
@@ -54,8 +56,10 @@ public class PostRestController {
 
 	// get all posts
 	@GetMapping("/posts")
-	public ResponseEntity<List<PostDto>> fetchAllPosts() {
-		return ResponseEntity.ok(service.getAllPosts());
+	public ResponseEntity<PostResponse> fetchAllPosts(
+			@RequestParam(value = "pageNumber", defaultValue = "0", required = false) Integer pageNumber,
+			@RequestParam(value = "pageSize", defaultValue = "5", required = false) Integer pageSize) {
+		return ResponseEntity.ok(service.getAllPosts(pageNumber, pageSize));
 	}
 
 	// update post
